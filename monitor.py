@@ -79,3 +79,19 @@ print(f"Found {len(new_links)} new items")
 
 for item in new_links:
   print(item)
+
+if new_links:
+
+    body = ""
+
+    for item in new_links:
+
+        body += (
+            f"Source: {item['source']}\n"
+            f"URL: {item['url']}\n\n"
+        )
+
+    send_email(
+        "New Local Government Agendas",
+        body
+    )
