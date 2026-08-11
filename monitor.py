@@ -1,8 +1,17 @@
 # monitor.py
 
 import json
+import os
 import requests
+import smtplib
+
 from bs4 import BeautifulSoup
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+EMAIL_FROM = os.getenv("EMAIL_FROM")
+EMAIL_TO = os.getenv("EMAIL_TO")
+EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 
 SEEN_FILE = "data/seen_links.json"
   
