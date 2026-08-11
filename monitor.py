@@ -9,6 +9,27 @@ from bs4 import BeautifulSoup
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+def send_email(subject, body):
+
+    msg = MIMEMultipart()
+
+    msg["From"] = EMAIL_FROM
+    msg["To"] = EMAIL_TO
+    msg["Subject"] = subject
+
+    msg.attach(MIMEText(body, "plain"))
+
+    with smtplib.SMTP("smtp.gmail.com", 587) as server:
+
+        server.starttls()
+
+        server.login(
+            EMAIL_FROM,
+            EMAIL_PASSWORD
+        )
+
+        server.send_message(msg)
+
 EMAIL_FROM = os.getenv("EMAIL_FROM")
 EMAIL_TO = os.getenv("EMAIL_TO")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
